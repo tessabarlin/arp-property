@@ -53,10 +53,10 @@ nav .btn{color:var(--gold-ink);padding:9px 16px}
 @media (max-width:760px){nav a:not(.btn){display:none}}
 
 /* Hero */
-.hero{position:relative}
-.hero img{display:block;width:100%;height:auto}
+.hero{position:relative;max-width:1240px;margin:24px auto 0}
+.hero img{display:block;width:100%;height:620px;object-fit:cover;object-position:center 68%}
 .hero .copy{position:absolute;left:0;right:0;bottom:0}
-.hero .copy .wrap{padding-block:0 clamp(24px,4vw,48px)}
+.hero .copy .wrap{padding-block:0 clamp(20px,3vw,36px);padding-right:clamp(20px,3vw,36px)}
 .hero .panel{background:rgba(14,13,12,.9);color:#f4efe5;padding:clamp(20px,2.2vw,28px) clamp(24px,3vw,40px);max-width:min(700px,64%);margin-left:auto}
 .hero .eyebrow{color:#e2c182;font-size:.68rem}
 .hero h1{font-size:clamp(1.9rem,2.7vw,2.6rem);max-width:none;margin:8px 0 8px;font-weight:500}
@@ -66,6 +66,8 @@ nav .btn{color:var(--gold-ink);padding:9px 16px}
 /* hero ghost button */
 .hero .panel .btn.line{color:#f4efe5;border-color:rgba(244,239,229,.5)}
 @media (max-width:760px){
+  .hero{margin-top:0}
+  .hero img{height:auto !important}
   .hero .copy{position:static}
   .hero .copy .wrap{padding:0}
   .hero .panel{max-width:none;background:var(--bg);color:var(--fg);padding:26px max(20px, env(safe-area-inset-right, 0px)) 30px max(20px, env(safe-area-inset-left, 0px))}
@@ -389,7 +391,7 @@ function show() {
 function openLb(set, i, from) {
   cur = { set, i, from }; show();
   const avail = (window.screen && screen.availHeight) ? screen.availHeight : 800;
-  const h = Math.round(Math.min(Math.max(avail - 200, 340), 760));
+  const h = Math.round(Math.min(Math.max(avail - 130, 340), 900));
   const r = from.getBoundingClientRect(); const y = r.top + window.scrollY + r.height / 2;
   const maxTop = document.documentElement.scrollHeight - h;
   lb.style.height = h + "px"; lb.style.top = Math.max(0, Math.min(y - h / 2, maxTop)) + "px";
@@ -438,6 +440,15 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click
   const id = a.getAttribute("href").slice(1); const t = id && document.getElementById(id);
   if (t) { e.preventDefault(); t.scrollIntoView({ behavior: "smooth", block: "start" }); }
 }));
+
+// Fit the cover photo to the visible screen height (works inside an embed box)
+function sizeHero(){
+  const img = document.querySelector(".hero img"); if (!img) return;
+  if (window.innerWidth <= 760) { img.style.height = ""; return; }
+  const avail = (window.screen && screen.availHeight) ? screen.availHeight : 900;
+  img.style.height = Math.round(Math.min(Math.max(avail - 260, 380), 820)) + "px";
+}
+sizeHero(); window.addEventListener("resize", sizeHero);
 </script>
 
 </body>
