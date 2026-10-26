@@ -54,7 +54,7 @@ nav .btn{color:var(--gold-ink);padding:9px 16px}
 
 /* Hero */
 .hero{position:relative}
-.hero img{display:block;width:100%;height:clamp(520px,82vh,860px);object-fit:cover;object-position:center 55%}
+.hero img{display:block;width:100%;height:auto}
 .hero .copy{position:absolute;left:0;right:0;bottom:0}
 .hero .copy .wrap{padding-block:0 clamp(24px,4vw,48px)}
 .hero .panel{background:rgba(14,13,12,.9);color:#f4efe5;padding:clamp(20px,2.2vw,28px) clamp(24px,3vw,40px);max-width:min(700px,64%);margin-left:auto}
@@ -66,7 +66,6 @@ nav .btn{color:var(--gold-ink);padding:9px 16px}
 /* hero ghost button */
 .hero .panel .btn.line{color:#f4efe5;border-color:rgba(244,239,229,.5)}
 @media (max-width:760px){
-  .hero img{height:auto;aspect-ratio:4/3}
   .hero .copy{position:static}
   .hero .copy .wrap{padding:0}
   .hero .panel{max-width:none;background:var(--bg);color:var(--fg);padding:26px max(20px, env(safe-area-inset-right, 0px)) 30px max(20px, env(safe-area-inset-left, 0px))}
