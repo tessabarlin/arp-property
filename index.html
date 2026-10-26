@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ARP Property</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: full-bleed photo hero, then two property collections as dense image grids, a film poster, services in three columns, contact with portrait. Dark obsidian first, parchment light. */
+:root{
+  --bg:#121110; --surface:#1c1a17; --fg:#ece5d7; --muted:#a69e90; --line:rgba(236,229,215,.14);
+  --gold:#c9a45c; --gold-ink:#121110; --slate:#7c93a4;
+  --display:"Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --body:"Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){
+  --bg:#f1ede5; --surface:#e7e1d5; --fg:#1a1916; --muted:#5d574d; --line:rgba(26,25,22,.14);
+  --gold:#8a6726; --gold-ink:#f8f5ef; --slate:#46606f; color-scheme:light } }
+:root[data-theme="light"]{
+  --bg:#f1ede5; --surface:#e7e1d5; --fg:#1a1916; --muted:#5d574d; --line:rgba(26,25,22,.14);
+  --gold:#8a6726; --gold-ink:#f8f5ef; --slate:#46606f; color-scheme:light }
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-weight:300;font-size:17px;line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+.eyebrow{font-family:var(--body);font-weight:500;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.2rem,4.6vw,3.6rem)}
+h3{font-size:1.7rem}
+p{margin:0}
+
+/* Header */
+header.top{position:relative;z-index:20;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
+.brand{display:flex;flex-direction:column;text-decoration:none;line-height:1.1}
+.brand b{font-family:var(--display);font-weight:600;font-size:1.35rem;letter-spacing:.01em}
+.brand span{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-top:3px}
+nav{display:flex;gap:26px;align-items:center;font-size:.86rem;letter-spacing:.06em}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--gold-ink);text-decoration:none;font-family:var(--body);font-weight:500;font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;padding:12px 20px;border:0;cursor:pointer;border-radius:2px}
+.btn:hover{filter:brightness(1.08)}
+nav .btn{color:var(--gold-ink);padding:9px 16px}
+@media (max-width:760px){nav a:not(.btn){display:none}}
+
+/* Hero */
+.hero{position:relative}
+.hero img{display:block;width:100%;height:clamp(520px,82vh,860px);object-fit:cover;object-position:center 55%}
+.hero .copy{position:absolute;left:0;right:0;bottom:0}
+.hero .copy .wrap{padding-block:0 clamp(24px,4vw,48px)}
+.hero .panel{background:rgba(14,13,12,.9);color:#f4efe5;padding:clamp(20px,2.2vw,28px) clamp(24px,3vw,40px);max-width:min(700px,64%);margin-left:auto}
+.hero .eyebrow{color:#e2c182;font-size:.68rem}
+.hero h1{font-size:clamp(1.9rem,2.7vw,2.6rem);max-width:none;margin:8px 0 8px;font-weight:500}
+.hero h1 em{font-style:italic;font-weight:400}
+.hero p{color:rgba(244,239,229,.8);font-size:.98rem;line-height:1.55}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+/* hero ghost button */
+.hero .panel .btn.line{color:#f4efe5;border-color:rgba(244,239,229,.5)}
+@media (max-width:760px){
+  .hero img{height:auto;aspect-ratio:4/3}
+  .hero .copy{position:static}
+  .hero .copy .wrap{padding:0}
+  .hero .panel{max-width:none;background:var(--bg);color:var(--fg);padding:26px max(20px, env(safe-area-inset-right, 0px)) 30px max(20px, env(safe-area-inset-left, 0px))}
+  .hero .panel .eyebrow{color:var(--gold)}
+  .hero .panel p{color:var(--muted)}
+  .hero .panel .btn.line{color:var(--fg);border-color:var(--line)}
+}
+.btn.ghost{background:transparent;color:#f4efe5;border:1px solid rgba(244,239,229,.55)}
+
+/* Strip */
+.strip{border-bottom:1px solid var(--line)}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:12px 40px;padding-block:22px;font-size:.84rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.strip b{color:var(--fg);font-weight:500}
+
+/* Sections */
+section.block{padding-block:clamp(64px,9vw,120px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 60px;align-items:end;margin-bottom:40px}
+.sec-head p{color:var(--muted);max-width:52ch}
+@media (max-width:820px){.sec-head{grid-template-columns:1fr}}
+
+.property + .property{margin-top:clamp(70px,9vw,110px)}
+.prop-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding-bottom:16px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.prop-head h3{font-size:clamp(1.7rem,3vw,2.3rem)}
+.prop-head .meta{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.prop-head .meta b{color:var(--gold);font-weight:500}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:dense;gap:8px}
+.grid button{all:unset;position:relative;display:block;aspect-ratio:3/2;overflow:hidden;cursor:zoom-in;background:var(--surface)}
+.grid button.feature{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.grid.pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.grid button:hover img{transform:scale(1.035)}
+.grid button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.grid .cap{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#f4efe5;background:linear-gradient(180deg,transparent,rgba(10,9,8,.7));opacity:0;transition:opacity .3s}
+.grid button:hover .cap,.grid button:focus-visible .cap{opacity:1}
+@media (max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}}
+
+/* Film */
+.film{background:var(--surface)}
+.poster{position:relative;display:block;text-decoration:none;color:#f4efe5;overflow:hidden;border-radius:2px}
+.poster img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.poster:hover img{transform:scale(1.02)}
+.poster::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,9,8,.15),rgba(10,9,8,.6))}
+.poster .play{position:absolute;inset:0;z-index:1;display:grid;place-items:center;align-content:center;gap:18px;text-align:center}
+.poster .ring{width:clamp(72px,9vw,104px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(244,239,229,.8);display:grid;place-items:center;background:rgba(10,9,8,.25);transition:background .3s}
+.poster:hover .ring{background:#c9a45c;border-color:#c9a45c}
+.poster .ring svg{width:28%;margin-left:6%;fill:#f4efe5}
+.poster .label{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase}
+.film-note{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 30px;margin-top:16px;color:var(--muted);font-size:.9rem}
+.film-note a{color:var(--gold)}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.svc{padding:34px 34px 10px 0;min-width:0}
+.svc + .svc{padding-left:34px;border-left:1px solid var(--line)}
+.svc svg{width:38px;height:38px;stroke:var(--gold);fill:none;stroke-width:1.2;margin-bottom:22px}
+.svc h3{margin-bottom:12px}
+.svc p{color:var(--muted)}
+.svc ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:8px;font-size:.92rem}
+.svc li{padding-left:18px;position:relative}
+.svc li::before{content:"";position:absolute;left:0;top:.75em;width:8px;height:1px;background:var(--gold)}
+@media (max-width:860px){.services{grid-template-columns:1fr}.svc,.svc + .svc{padding:30px 0 22px;border-left:0;border-top:1px solid var(--line)}.services{border-top:0}}
+.combo{margin-top:44px;padding:26px 30px;border:1px solid var(--line);display:flex;flex-wrap:wrap;gap:16px 30px;align-items:center;justify-content:space-between}
+.combo p{font-family:var(--display);font-size:1.5rem;font-style:italic;line-height:1.25;max-width:40ch}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:40px clamp(40px,6vw,90px);align-items:center}
+.contact .portrait{margin:0;max-width:100%}
+.contact .portrait img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
+.contact .portrait figcaption{margin-top:10px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.contact .text{min-width:0;display:grid;gap:20px}
+.contact .bio{color:var(--muted);max-width:54ch}
+.contact .invite{font-family:var(--display);font-style:italic;font-size:clamp(1.4rem,2.4vw,1.8rem);line-height:1.3}
+.contact-line{display:grid;gap:6px;padding-top:22px;border-top:1px solid var(--line)}
+.contact-line .k{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.contact-line .v{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;font-family:var(--display);font-size:clamp(1.5rem,3vw,2.1rem);min-width:0}
+.contact-line .v span{user-select:all;overflow-wrap:anywhere}
+.copy-btn{all:unset;cursor:pointer;font-family:var(--body);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid currentColor;user-select:none}
+.contact .actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn.line{background:transparent;color:var(--fg);border:1px solid var(--line)}
+@media (max-width:820px){.contact{grid-template-columns:1fr}.contact .portrait{max-width:440px}}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 30px;padding-block:30px;font-size:.84rem;color:var(--muted)}
+
+/* Lightbox */
+.lb{position:absolute;left:0;right:0;top:0;height:640px;z-index:50;background:rgba(10,9,8,.96);display:grid;grid-template-rows:auto 1fr auto;color:#f4efe5}
+.lb-top,.lb-bot{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:calc(14px + env(safe-area-inset-top, 0px)) max(18px, env(safe-area-inset-right, 0px)) 14px max(18px, env(safe-area-inset-left, 0px));font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}
+.lb-bot{padding:14px max(18px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px));color:rgba(244,239,229,.7);font-variant-numeric:tabular-nums}
+.lb-stage{position:relative;min-height:0;display:grid;place-items:center;padding:0 64px}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.lb button{all:unset;cursor:pointer;color:#f4efe5}
+.lb button:focus-visible{outline:2px solid #c9a45c;outline-offset:3px}
+.lb .nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(244,239,229,.35);border-radius:50%}
+.lb .nav:hover{border-color:#c9a45c;color:#c9a45c}
+.lb .prev{left:10px}.lb .next{right:10px}
+.lb .nav svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+@media (max-width:640px){.lb-stage{padding:0 8px}.lb .nav{top:auto;bottom:-58px;transform:none}.lb .prev{left:auto;right:74px}.lb .next{right:16px}}
+
+.film-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000}
+.film-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+</style>
+<style>body{margin:0}img{max-width:100%}html{scroll-behavior:auto}</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Ancient Rock Productions, Property">
+      <b>Ancient Rock Productions</b>
+      <span>Property · Stills &amp; Film</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#film">Film</a>
+      <a href="#services">Services</a>
+      <a class="btn" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <img src="img/img-15.jpg" alt="Pool and covered pavilion in a leafy garden">
+    <div class="copy"><div class="wrap"><div class="panel">
+      <div class="eyebrow">The property wing of Ancient Rock Productions</div>
+      <h1>Homes shot with a <em>documentary</em> eye</h1>
+      <p>Property photography, video and drone for agents, guest houses and homeowners.</p>
+      <div class="actions">
+        <a class="btn" href="#contact">Get in touch</a>
+        <a class="btn line" href="#work">See the work</a>
+      </div>
+    </div></div></div>
+  </div>
+
+  <div class="strip"><div class="wrap">
+    <span><b>Stills</b> · interiors, exteriors, details</span>
+    <span><b>Video package</b> · shoot, drone &amp; edit</span>
+    <span><b>Drone</b> · aerial stills &amp; video</span>
+  </div></div>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Selected work</div>
+          <h2>From the air, then room by room</h2>
+        </div>
+        <p>Natural light, true colour and straight verticals, so buyers and guests see the space as it feels in person. Tap any photo to view it full size.</p>
+      </div>
+
+      <article class="property" id="aerial">
+        <div class="prop-head">
+          <h3>Winelands Estate</h3>
+          <div class="meta"><b>Drone</b> · <span data-count="c"></span> aerial stills</div>
+        </div>
+        <div class="grid pair" data-set="c"></div>
+      </article>
+
+      <article class="property" id="garden-house">
+        <div class="prop-head">
+          <h3>Garden House &amp; Pool Pavilion</h3>
+          <div class="meta"><b>Residential</b> · <span data-count="a"></span> images</div>
+        </div>
+        <div class="grid" data-set="a"></div>
+      </article>
+
+      <article class="property" id="guest-suites">
+        <div class="prop-head">
+          <h3>Boutique Guest Suites</h3>
+          <div class="meta"><b>Hospitality</b> · <span data-count="b"></span> images</div>
+        </div>
+        <div class="grid" data-set="b"></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block film" id="film">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Property film</div>
+          <h2>Walk through it before the viewing</h2>
+        </div>
+        <p>A short cinematic walkthrough lets buyers move through the rooms in order and get a sense of the light and flow, which stills on their own can't give them. Cut for listing portals, YouTube and social.</p>
+      </div>
+      <a class="poster" id="film-poster" href="https://youtu.be/cTB8jZlWrjE" target="_blank" rel="noopener">
+        <img src="img/film-still.jpg" alt="Still from the film: a thatched lodge lounge lit by woven pendant lights" loading="lazy">
+        <div class="play">
+          <div class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z"/></svg></div>
+          <div class="label">Watch the film</div>
+        </div>
+      </a>
+      <div class="film-note">
+        <span>Plays here, or watch it on YouTube</span>
+        <a href="https://youtu.be/cTB8jZlWrjE" target="_blank" rel="noopener">youtu.be/cTB8jZlWrjE</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Services</div>
+          <h2>Stills, film and drone from one shoot</h2>
+        </div>
+        <p>Book any one on its own, or combine them so your listing photos, walkthrough and aerials are shot on the same day, in the same light.</p>
+      </div>
+      <div class="services">
+        <div class="svc">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="11" width="32" height="22" rx="2"/><circle cx="20" cy="22" r="6.5"/><path d="M14 11l2.5-4h7L26 11"/></svg>
+          <h3>Photography</h3>
+          <p>Edited, listing-ready stills of every room, the outside spaces and the details that sell the home.</p>
+          <ul><li>Interiors and exteriors</li><li>Detail and lifestyle frames</li><li>Colour-corrected, verticals straightened</li></ul>
+        </div>
+        <div class="svc">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="11" width="23" height="18" rx="2"/><path d="M27 17l9-5v16l-9-5"/></svg>
+          <h3>Video package</h3>
+          <p>One package from first conversation to final cut. We agree on what the video needs to do for the listing, then I film the property on the ground and from the air and edit it to that brief.</p>
+          <ul><li>Planning call on style, length and where it will run</li><li>Filming on the ground and by drone</li><li>Edited, colour graded and set to music</li><li>Versions for portals, YouTube and Instagram</li></ul>
+        </div>
+        <div class="svc">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="9" cy="10" r="4.5"/><circle cx="31" cy="10" r="4.5"/><circle cx="9" cy="30" r="4.5"/><circle cx="31" cy="30" r="4.5"/><rect x="15" y="16" width="10" height="8" rx="1.5"/><path d="M12 13l3 3M28 13l-3 3M12 27l3-3M28 27l-3-3"/></svg>
+          <h3>Drone</h3>
+          <p>Aerial stills and footage that show the plot, the roofline, the garden and what's around the property.</p>
+          <ul><li>Aerial stills</li><li>Aerial video, included in the video package</li><li>Location and views in context</li></ul>
+        </div>
+      </div>
+      <div class="combo">
+        <p>Most listings book all three together, so stills, film and aerials are done in one visit.</p>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block film" id="contact">
+    <div class="wrap contact">
+      <figure class="portrait">
+        <img src="img/tessa.jpg" alt="Portrait of Tessa Barlin" loading="lazy">
+        <figcaption>Tessa Barlin · Photographer &amp; filmmaker</figcaption>
+      </figure>
+      <div class="text">
+        <div class="eyebrow">Get in touch</div>
+        <h2>Book a shoot with Tessa</h2>
+        <p class="bio">Tessa is a multi-award winning photographer and filmmaker based in Cape Town. She brings a documentary eye for light, space and story to property work, so every listing gets stills and film that make people want to walk through the door.</p>
+        <p class="invite">I'd love to bring your properties to life. Let's chat.</p>
+        <div class="contact-line">
+          <span class="k">Email</span>
+          <span class="v"><span id="email-addr">tessabarlinphoto@gmail.com</span> <button class="copy-btn" type="button" data-copy="email-addr">Copy</button></span>
+        </div>
+        <div class="actions">
+          <a class="btn" href="mailto:tessabarlinphoto@gmail.com?subject=Property%20shoot%20enquiry">Email Tessa</a>
+          <a class="btn line" href="#work">Back to the work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <span>Ancient Rock Productions · Property</span>
+  <span>Cape Town, South Africa</span>
+</div></footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="lb-top"><span id="lb-title"></span><button type="button" id="lb-close" aria-label="Close">Close ✕</button></div>
+  <div class="lb-stage">
+    <img id="lb-img" alt="">
+    <button class="nav prev" type="button" id="lb-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8"/></svg></button>
+    <button class="nav next" type="button" id="lb-next" aria-label="Next photo"><svg viewBox="0 0 24 24"><path d="M9 4l8 8-8 8"/></svg></button>
+  </div>
+  <div class="lb-bot"><span id="lb-cap"></span><span id="lb-n"></span></div>
+</div>
+
+<script>
+const SETS = {
+  c: { name: "Winelands Estate", items: [
+    ["drone-1","Estate and infinity pool"],["drone-3","Estate in its valley"]
+  ]},
+  a: { name: "Garden House & Pool Pavilion", items: [
+    ["img-16","Pool and main house",1],["img-15","Pool pavilion"],["img-13","Pavilion lounge"],["img-14","Pavilion dining"],
+    ["img-17","Pavilion towards the house"],["img-18","Pavilion lounge"],["img-19-2","Pavilion looking out to the garden"],["img-20","Stoep and pool"],
+    ["img-1","Living room",1],["img-3-2","Living room"],["img-4","Dining room"],["img-2","Lounge"],
+    ["img-25-2","Kitchen",1],["img-5","Kitchen"],["img-23","Kitchen"],["img-11","Main bedroom"],
+    ["img-7","Guest bedroom"],["img-8","Guest bedroom"],["img-9-2","Study nook"],["img-12","Main bathroom"],["img-22","Guest bathroom"]
+  ]},
+  b: { name: "Boutique Guest Suites", items: [
+    ["img-38","Lounge under the skylight",1],["img-6","Luxury suite"],["newnova-37","Four-poster suite"],["newnova-3","Garden suite"],
+    ["newnova-4","Freestanding bath"],["newnova-54","En-suite bathroom"],["newnova-27","Suite with fireplace"],["newnova-22","Room with a view"],
+    ["img-67","Twin room"],["img-81","Reading corner"],["newnova-6","Suite entrance"],["newnova-65","Self-catering lounge"],
+    ["newnova-68","Self-catering lounge"],["img-82","Bed detail"],["img-89","Bed detail"]
+  ]}
+};
+
+for (const key of Object.keys(SETS)) {
+  const grid = document.querySelector(`.grid[data-set="${key}"]`);
+  document.querySelector(`[data-count="${key}"]`).textContent = SETS[key].items.length;
+  SETS[key].items.forEach(([file, cap, feat], i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    if (feat) b.className = "feature";
+    b.setAttribute("aria-label", `${cap}, open full size`);
+    b.innerHTML = `<img src="img/${file}.jpg" alt="${cap}" loading="${i < 4 ? "eager" : "lazy"}" decoding="async"><span class="cap">${cap}</span>`;
+    b.addEventListener("click", () => openLb(key, i, b));
+    grid.appendChild(b);
+  });
+}
+
+const lb = document.getElementById("lb"), lbImg = document.getElementById("lb-img");
+let cur = { set: "a", i: 0, from: null };
+function show() {
+  const s = SETS[cur.set], [file, cap] = s.items[cur.i];
+  lbImg.src = `img/${file}.jpg`; lbImg.alt = cap;
+  document.getElementById("lb-title").textContent = s.name;
+  document.getElementById("lb-cap").textContent = cap;
+  document.getElementById("lb-n").textContent = `${cur.i + 1} / ${s.items.length}`;
+}
+function openLb(set, i, from) {
+  cur = { set, i, from }; show();
+  const h = Math.round(Math.min(Math.max((window.screen && screen.height) ? screen.height * 0.8 : 640, 420), 820));
+  const r = from.getBoundingClientRect(); const y = r.top + window.scrollY + r.height / 2;
+  const maxTop = document.documentElement.scrollHeight - h;
+  lb.style.height = h + "px"; lb.style.top = Math.max(0, Math.min(y - h / 2, maxTop)) + "px";
+  lb.hidden = false; lb.scrollIntoView({ block: "center" }); document.getElementById("lb-close").focus({ preventScroll: true });
+}
+function closeLb() { lb.hidden = true; cur.from && cur.from.focus({ preventScroll: true }); }
+function step(d) { const n = SETS[cur.set].items.length; cur.i = (cur.i + d + n) % n; show(); }
+document.getElementById("lb-close").onclick = closeLb;
+document.getElementById("lb-prev").onclick = () => step(-1);
+document.getElementById("lb-next").onclick = () => step(1);
+lb.addEventListener("click", e => { if (e.target === lb || e.target.classList.contains("lb-stage")) closeLb(); });
+document.addEventListener("keydown", e => {
+  if (lb.hidden) return;
+  if (e.key === "Escape") closeLb();
+  if (e.key === "ArrowLeft") step(-1);
+  if (e.key === "ArrowRight") step(1);
+});
+let tx = null;
+lb.addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener("touchend", e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1); tx = null; });
+
+async function copyText(text, btn, sourceEl) {
+  const old = btn.textContent;
+  try { await navigator.clipboard.writeText(text); btn.textContent = "Copied"; }
+  catch (err) {
+    if (sourceEl && sourceEl.select) { sourceEl.focus(); sourceEl.select(); }
+    else if (sourceEl) { const r = document.createRange(); r.selectNodeContents(sourceEl); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    btn.textContent = "Selected, press copy";
+  }
+  setTimeout(() => btn.textContent = old, 2200);
+}
+document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", () => {
+  const el = document.getElementById(b.dataset.copy); copyText(el.textContent.trim(), b, el);
+}));
+
+
+// Film plays inline
+document.getElementById("film-poster").addEventListener("click", e => {
+  e.preventDefault();
+  const wrap = document.createElement("div"); wrap.className = "film-frame";
+  wrap.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/cTB8jZlWrjE?autoplay=1&rel=0" title="ARP property film" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+  e.currentTarget.replaceWith(wrap);
+});
+// In-page links scroll the whole site page (works inside an embed box)
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+  const id = a.getAttribute("href").slice(1); const t = id && document.getElementById(id);
+  if (t) { e.preventDefault(); t.scrollIntoView({ behavior: "smooth", block: "start" }); }
+}));
+</script>
+
+</body>
+</html>
