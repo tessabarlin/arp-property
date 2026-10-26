@@ -254,7 +254,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
           <div class="eyebrow">Property film</div>
           <h2>Walk through it before the viewing</h2>
         </div>
-        <p>A short cinematic walkthrough lets buyers move through the rooms in order and get a sense of the light and flow, which stills on their own can't give them. Cut for listing portals, YouTube and social.</p>
+        <p>Let video tell the story of your property: the light, the flow, and the feeling of being there.</p>
       </div>
       <a class="poster" id="film-poster" href="https://youtu.be/cTB8jZlWrjE" target="_blank" rel="noopener">
         <img src="img/film-still.jpg" alt="Still from the film: a thatched lodge lounge lit by woven pendant lights" loading="lazy">
@@ -446,7 +446,8 @@ function sizeHero(){
   const img = document.querySelector(".hero img"); if (!img) return;
   if (window.innerWidth <= 760) { img.style.height = ""; return; }
   const avail = (window.screen && screen.availHeight) ? screen.availHeight : 900;
-  img.style.height = Math.round(Math.min(Math.max(avail - 260, 380), 820)) + "px";
+  const byWidth = img.getBoundingClientRect().width / 1.55;
+  img.style.height = Math.round(Math.min(Math.max(avail - 260, 380), 820, byWidth)) + "px";
 }
 sizeHero(); window.addEventListener("resize", sizeHero);
 </script>
