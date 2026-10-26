@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -157,7 +157,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 .lb-top,.lb-bot{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:calc(14px + env(safe-area-inset-top, 0px)) max(18px, env(safe-area-inset-right, 0px)) 14px max(18px, env(safe-area-inset-left, 0px));font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}
 .lb-bot{padding:14px max(18px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px));color:rgba(244,239,229,.7);font-variant-numeric:tabular-nums}
 .lb-stage{position:relative;min-height:0;display:grid;place-items:center;padding:0 64px}
-.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.lb-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+.lb-stage{overflow:hidden}
 .lb button{all:unset;cursor:pointer;color:#f4efe5}
 .lb button:focus-visible{outline:2px solid #c9a45c;outline-offset:3px}
 .lb .nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(244,239,229,.35);border-radius:50%}
@@ -388,7 +389,8 @@ function show() {
 }
 function openLb(set, i, from) {
   cur = { set, i, from }; show();
-  const h = Math.round(Math.min(Math.max((window.screen && screen.height) ? screen.height * 0.8 : 640, 420), 820));
+  const avail = (window.screen && screen.availHeight) ? screen.availHeight : 800;
+  const h = Math.round(Math.min(Math.max(avail - 200, 340), 760));
   const r = from.getBoundingClientRect(); const y = r.top + window.scrollY + r.height / 2;
   const maxTop = document.documentElement.scrollHeight - h;
   lb.style.height = h + "px"; lb.style.top = Math.max(0, Math.min(y - h / 2, maxTop)) + "px";
